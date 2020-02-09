@@ -44,7 +44,8 @@
 
 % Title content
 \title{ENPM 673 Homework 1}
-\author{Arjun Srinivasan Ambalam}
+\author{Arjun Srinivasan Ambalam,Praveen Menaka Sekar,Arun Kumar Dhandayuthabani}
+\newline
 \date{February 05, 2020}
 
 \begin{document}
@@ -59,41 +60,38 @@
 
 
 % Example Subsection
-\subsection{Since camera sensor is square shaped Field of View (FOV) in Horizontal and Vertical directions are same}
+\subsection{Since camera sensor is square shaped and also a single focal length is given,the Field of View (FOV) in Horizontal and Vertical directions are same}
 \begin{equation*}
-FOV \phi=\tan ^{-1} \frac{d}{2f}
+FOV , \phi=\tan ^{-1} \frac{d}{2f}
 \end{equation*}
- where d is camera sensor width(d=14 mm)
+ where d is camera sensor width (d=14 mm)
         , f is focal length (f=15 mm)
 \begin{equation*}     
    \phi =\tan ^{ - 1}\frac{14}{2*15}
-               \phi=  25.0168.
+                    
+                   \hspace{6.5cm} \phi =  25.0168.
 \end{equation*}
 
 
 % Example Subsubsection
-\subsection{Min no of pixels occupying image}
-square shaped object with width 5cm(w)= 50 mm
-distance of from the camera(D) =20 m=20000 mm
-Let size of the object image on camera sensor be x mm
+\subsection{Minimum number of pixels occupying image}
+Square shaped object with width 5cm (w) = 50 mm,
+Distance of from the camera (D) = 20 m = 20000 mm.
+Let size of the object image on camera sensor be 'x' mm
 \begin{equation*}
  \frac{x}{2f}=\frac{w}{2D}
-After substitution and solving we get x=0.0375 mm\,
-5 MP resolution for sensor area 14\times14 mm ^2 
-for sensor area 0.0375*0.0375  no of corresponding pixels are 35.87
+ \end{equation*}
+\begin{flushleft}
+After substitution and solving we get x=0.0375 mm,\\
+5 MP resolution for sensor area 14\times14\hspace{.1cm}mm ^2 \\
+Therefore for sensor area \hspace{.1cm}0.0375*0.0375, Minimum number of corresponding pixels are 35.87
   
-\end{equation*}
+\end{flushleft}
 
+\section{Curve Fitting Methods}
+We have discussed about Least Squares ,Total Least Squares and Least Squares with Regularization.From the results we see that             method is best fit for the problem in hand. 
 
-%  Theoretical Background
-\section{Theoretical Background}
-Add your theoretical background here. Some example text: As we learned from our textbook \cite{kutz_2013}, Fourier introduced the concept of representing a given function $f(x)$ by a trigonometric series of sines and cosines:
-\begin{equation}
-    f(x) = \frac{a_0}{2} + \sum_{i=1}^\infty \left(a_n\cos{nx} + b_n\sin{nx}\right) \quad x \in (-\pi,\pi].
-    \label{eqn:fourierseries}
-\end{equation}
-You can reference numbered equations, figures, tables, algorithms, and code like this: Equation~\ref{eqn:fourierseries}, etc.
-
+\section{Homography in Computer Vision}
 % Algorithm Implementation and Development
 \section{Algorithm Implementation and Development}
 Add your algorithm implementation and development here. See Algorithm~\ref{alg:example} for how to include an algorithm in your document. This is how to make an \textit{ordered} list:
