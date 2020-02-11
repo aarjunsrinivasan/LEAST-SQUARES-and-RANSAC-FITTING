@@ -16,6 +16,7 @@ def leastSquares_curveFitting():
     x_matrix = np.transpose([x_squared, x, np.ones(np.shape(x))])
     B = np.matmul(np.linalg.inv(np.matmul(np.transpose(x_matrix), x_matrix)),
                   np.matmul(np.transpose(x_matrix), y))
+    print(B)
     y_estimate = np.matmul(x_matrix, np.transpose(B))
     plt.scatter(x, y, label = 'Scattered data')
     plt.plot(x, y_estimate, 'r', label = 'Curve Fitting')
