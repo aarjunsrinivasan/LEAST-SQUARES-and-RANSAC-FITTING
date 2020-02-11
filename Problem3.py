@@ -7,6 +7,8 @@ This is a temporary script file.
 
 import numpy as np
 from numpy import linalg 
+# import scipy.linalg as la
+
 x1,y1=5,5
 xp1,yp1=100,100
 x2,y2=150,5
@@ -29,26 +31,31 @@ RA=np.dot(A.transpose(),A)#right singular vectors 9*9(V)
 LA=np.dot(A,A.transpose())#leftt singular vectors 8*8(U)
 w1, v1 = linalg.eig(RA)
 #Sorting the eig values and vectors in descending order
-
-
+idx1 = w1.argsort()[::-1]
+w1_new = w1[idx1]
+v1_new=v1[:,idx1]
 w2, v2 = linalg.eig(LA)
-
-H=np.reshape(v1[:,8],(3,3))#Homography matrix
+idx2 = w2.argsort()[::-1]
+w2_new = w2[idx2]
+v2_new=v2[:,idx2]
+#H=np.reshape(v1[:,8],(3,3))#Homography matrix
 # A=UDV'
 #A is 8*9
 # U is 8*8 right singular vectors
 # D is 8*9 diagonal matrix 
 # V is 9*9 left singular vectors
-U=v2
+U=v2_new
 #V=v1.transpose()
-V=v1
-D=np.diag(np.sqrt(w2))
+V=v1_new
+D=np.diag(np.sqrt(w2_new))
 D=np.concatenate((D,np.zeros((8,1))), axis=1)
 a=np.dot(np.dot(U,D),np.transpose(V))
-b=np.dot(a,-1)
-c=np.ceil(b)
+#b=np.dot(a,-1)
+c=np.round(a)
+
+
 #print(a)
-#print(b)
 print(c)
+#print(d)
 print(A)
 
