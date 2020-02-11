@@ -111,8 +111,60 @@ Two files of 2D data points are provided in the form of CSV files (Dataset1 and 
     \item Briefly explain all the steps of your solution and discuss why your choice of outlier rejection technique is best for that case. [20 POINTS]
 \end{itemize}
 \subsection{Curve Fitting}
-The problem of curve fitting is, given N discrete points in space, to find model parameters that can best characterize or generalize the trends prevailing between them. For this assignment, we are given with a set of 2D data points representing a projectile with different noise levels. In order to obtain the best model that can fit the given data points, We have discussed about Least Squares, Total Least Squares, Least Squares with Regularization and RANSAC (Random Sample Consensus) methodologies. Based on the results obtained from the above methods, the best fit for the problem is decided. 
-
+The problem of curve fitting is, given N discrete points in space, to find model parameters that can best characterize or generalize the trends prevailing between them. For this assignment, we are given with a set of 2D data points representing a projectile with different noise levels. In order to obtain the best model that can fit the given data points, We have discussed about Least Squares, Total Least Squares, Least Squares with Regularization and RANSAC (Random Sample Consensus) methodologies. Based on the results obtained from the above methods, the best fit for the problem is decided. Let us have a brief look at each of the above methods and their corresponding results.
+\newline \newline \textbf{Least Squares:}
+\newline Given the 2D projectile data \{(X\textsubscript{1}, Y\textsubscript{1}), (X\textsubscript{2}, Y\textsubscript{2}), ......., ( X\textsubscript{N}, Y\textsubscript{N})\}, we try to fit a quadratic equation $y = a{x^2} + bx + c$ by reducing the sum of squared errors associated with the estimated model parameters and ground truth. This concept is mathematically represented by,
+\begin{equation}
+\boxed{E(a, b, c) = \sum_{n = 1}^{N} (y - (a{x^2} + bx + c))}
+\end{equation}
+where,
+\begin{itemize}
+    \item E(a, b, c) - sum of squared errors between the ground truth y and the estimate y obtained from our model parameters. 
+\end{itemize}
+In order to find best fit for the above data we try to minimize the above error with respect to the model parameters. This can be easily represented using matrices.
+\begin{equation}
+\boxed{Y = XB}
+\end{equation}
+where, 
+\begin{equation}
+\boxed{Y = 
+\begin{bmatrix}
+y_1 \\ y_2 \\ . \\ . \\ . \\ y_N
+\end{bmatrix}
+X = 
+\begin{bmatrix}
+x^2_1 & x_1 & 1 \\ x^2_2 & x_2 & 1 \\ . & . & . \\ . & . & . \\
+x^2_N & x_N & 1 
+\end{bmatrix}
+B = 
+\begin{bmatrix}
+a \\ b \\ c
+\end{bmatrix}}
+\end{equation}
+\begin{equation}
+\boxed{E(a, b, c) = (Y - XB)^2}
+\end{equation}
+In order to minimize the above error,
+\begin{equation}
+\boxed{\frac{\partial E(a, b, c)}{\partial B} = 0}
+\end{equation}
+On solving the above equation we obtain the following optimized model parameters,
+\begin{equation}
+\boxed{B = (X^TX)^-1(X^TY)}
+\end{equation}
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwResult{Y\textsubscript{estimate}}
+ Load 2D data points\;
+ Evaluate Y and X matrices\;
+ Evaluate B matrix from $B = (X^TX)^-1(X^TY)$\;
+ Evaluate and Return Y\textsubscript{estimate}\;
+ Scatterplot original 2D data points and Plot the curve that fit the 2D
+ data points\;
+\caption{LeastSquaresCurveFitting.py}
+\end{algorithm}
+Random Sample And Consensus (RANSAC):
+RANSAC is an iterative algorithm that estimates the best possible solution of a certain model using the given set of data points that is contaminated by large number of outliers. 
 \section{Homography in Computer Vision}
 
 \begin{flushleft}
