@@ -1,5 +1,5 @@
 \documentclass{article}
-
+\usepackage{graphicx}
 % If you're new to LaTeX, here's some short tutorials:
 % https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes
 % https://en.wikibooks.org/wiki/LaTeX/Basics
@@ -163,6 +163,12 @@ On solving the above equation we obtain the following optimized model parameters
  data points
 \caption{LeastSquaresCurveFitting.py}
 \end{algorithm}
+
+\begin{center}
+    \includegraphics{least_square_curvefitting_data_1.png}
+    \includegraphics{least_square_curvefitting_data_2.png}
+\end{center}
+
 \newline \newline \textbf{Least Squares with Regularization:}
 \newline Given the 2D projectile data \{(X\textsubscript{1}, Y\textsubscript{1}), (X\textsubscript{2}, Y\textsubscript{2}), ......., ( X\textsubscript{N}, Y\textsubscript{N})\}, we try to fit a quadratic equation $y = a{x^2} + bx + c$ by reducing the sum of squared errors associated with the estimated model parameters and ground truth with an addition constraint called regularization parameter. This concept is mathematically represented by,
 \begin{equation}
@@ -203,6 +209,11 @@ On solving the above equation we obtain the following optimized model parameters
 \begin{equation}
 \boxed{B = (X^TX)\textsuperscript{-1}(X^TY)}
 \end{equation}
+\begin{center}
+    \includegraphics{least_square_regularization_data_1.png}
+    \includegraphics{least_square_regularization_data_2.png}
+\end{center}
+
 \newline \textbf{Random Sample And Consensus (RANSAC)}:
 \newline
 RANSAC is an iterative algorithm that estimates the best possible solution of a certain model using the given set of data points that is contaminated by large number of outliers. RANSAC basically comprises of two steps:
@@ -237,6 +248,14 @@ RANSAC is an iterative algorithm that estimates the best possible solution of a 
  }
  \caption{Random Sample And Consensus (RANSAC)}
 \end{algorithm}
+\begin{center}
+    \includegraphics{Data_1_Parameter_1.png}
+    \includegraphics{Data_1_Parameter_2.PNG}
+    \includegraphics{Data_1_Paramter_3.png}
+    \includegraphics{Data_2_Parameter_1.PNG}
+    \includegraphics{Data_2_Parameter_2.PNG}
+    \includegraphics{Data_2_Parameter_3.PNG}
+\end{center}
 \\
 \\
 \vspace{40mm} %5mm vertical space
@@ -350,6 +369,8 @@ U=\begin{bmatrix}
     -0.1846  & 0.3168 &  0.2485 &  0.0347  & -0.6983 &   -0.4673  & -0.2524  &  0.1816& 0\\
     -0.3693  & 0.6336  &  -0.2889  & 0.3933  &  0.3189  & 0.1750 &  -0.2614  &  0.1526& 0\\
 \end{bmatrix}\\
+
+
 
 
 
