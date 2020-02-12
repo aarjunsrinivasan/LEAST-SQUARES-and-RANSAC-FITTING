@@ -9,32 +9,38 @@ import numpy as np
 from scipy.sparse.linalg import eigs
 
 
-def calculateV(A):
+def calculate_SandV(A):
     '''
     Calculate right singular vectors V and obtain homography matrix H
     '''
     A_Transpose_A = np.matmul(np.transpose(A), A)
     eigen_values, eigen_vectors = eigs(A_Transpose_A, 8) 
     idx = eigen_values.argsort()[::-1]
-    sorted_eigen_vectors = eigen_vectors[:,idx]
+    sorted_eigen_values = np.real(np.round(eigen_values[idx]))
+    sorted_eigen_vectors = np.real(eigen_vectors[:,idx])
+    # print(sorted_eigen_vectors)
+    S_matrix = np.diag(np.sqrt(sorted_eigen_values))
     V = sorted_eigen_vectors
     H = np.dot(np.reshape(V[:,8],(3,3)),-1)
-    print(H)
-    return V
+    # print(H)
+    return S_matrix, V, eigen_values, H
 
-def calculate_SandU(A):
+def calculateU(A, V_matrix, eigen_values):
     '''
     Calculate diagonal matrix S and left singular vectors U
+    '''
     '''
     A_A_Transpose = np.matmul(A, np.transpose(A))
     eigen_values, eigen_vectors = eigs(A_A_Transpose, 7)
     idx = eigen_values.argsort()[::-1]
-    sorted_eigen_values = eigen_values[idx]
+    # sorted_eigen_values = eigen_values[idx]
     sorted_eigen_vectors = eigen_vectors[:,idx]
-    S_matrix = np.diag(np.sqrt(sorted_eigen_values))
-    S_matrix = np.concatenate((S_matrix, np.zeros((8,1))),axis = 1)
     U_matrix = sorted_eigen_vectors
-    return S_matrix, U_matrix
+    '''
+    U_matrix = np.matmul(A, V_matrix)
+    for i in range(U_matrix.shape[0]):
+        U_matrix[:,i] = U_matrix[:,i]/np.sqrt(eigen_values[i])
+    return U_matrix
 
     
 def main():
@@ -55,10 +61,13 @@ def main():
           [-x4,-y4,-1,0,0,0,x4*xp4,y4*xp4,xp4],
           [0,0,0,-x4,-y4,-1,x4*yp4,y4*yp4,yp4]], dtype = np.float64)
     
-    S_matrix, U_matrix = calculateS(A)
-    V_matrix = calculateV(A)
-    # A_estimate = np.matmul(U_matrix, np.matmul(S_matrix, np.transpose(V_matrix)))
-    
+    S_matrix, V_matrix, eigen_values, H = calculate_SandV(A)
+    U_matrix = calculateU(A, V_matrix, eigen_values)
+    # print(S_matrix.shape)
+    # print(V_matrix.shape)
+    # print(U_matrix.shape)
+    A_estimate = np.matmul(U_matrix, np.matmul(S_matrix, np.transpose(V_matrix)))
+    print(np.round(A_estimate))
 if __name__ == '__main__':
     main()
     
