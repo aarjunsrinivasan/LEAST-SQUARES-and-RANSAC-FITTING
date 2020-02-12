@@ -243,7 +243,7 @@ RANSAC is an iterative algorithm that estimates the best possible solution of a 
 \section{Homography in Computer Vision}
 
 \begin{flushleft}
-To compute SVD for Matrix A ,we need to calculate  eigen values and vectors of A$A^{\rm T}$ and $A^{\rm T}$A matrices \\
+
 
 \begin{equation*}
 A = 
@@ -293,15 +293,13 @@ A =
 \end{bmatrix}
 \end{equation*}
 
-
-
-A &= U\Sigma V^{T} \\
-The columns of U (size:m\times m) are \ orthogonal \ eigenvectors \ of A$A^{\rm T}$ \\
-The columns of V (size:n\times n) are  \ orthogonal \ eigenvectors \ of $A^{\rm T}$A \\
+To compute SVD for Matrix A ,we need to calculate  eigen values and vectors of $A^{\rm T}$A matrix \\
+\[ A &= U\Sigma V^{T} \] \\
+A is a matrix of size 8\times 9\\
+The columns of V (size:9\times 9) are  \ orthogonal \ eigenvectors \ of $A^{\rm T}$A \\
 Eigenvalues  of $A^{\rm T}$A  are \lamda 1 … \lambda r \\
 \sigma i=\sqrt {\lambda i}\\
-\sum_=diag(\sigma 1...\sigma r)
-
+\sum_= diag(\sigma 1...\sigma 9)
 \vspace{5mm} %5mm vertical space
 
  
@@ -334,12 +332,12 @@ V=\begin{bmatrix}
          0   &      0       &  0    &     0     &   145.60     &    0      &   0    &     0      &   0 \\
          0   &      0       &  0    &     0     &    0      &   60.87      &   0    &     0      &   0 \\
          0   &      0       &  0    &     0     &    0      &   0       &   3.87    &     0      &   0 \\
-         0   &      0       &  0    &     0     &    0      &   0       &  0     &     1      &   0 \\
+         0   &      0       &  0    &     0     &    0      &   0       &  0     &     0.81      &   0 \\
          0   &      0       &  0    &     0     &    0      &   0       &  0     &     0      &   0 \\
 \end{bmatrix}\\
 \vspace{5mm} %5mm vertical space
-Where U matix is obtained 
-U_i=(\displaystyle \frac {AV}{\sigma i} )\\
+Where U matix is obtained by multiplying A and V matrices and dividing the coloums of AV with corresponding \sigma i (i=1 \ to \ 9)
+% U_i=(\displaystyle \frac {AV}{\sigma i} )\\
 
 \vspace{5mm} %5mm vertical space
 U=\begin{bmatrix}
