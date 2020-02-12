@@ -13,6 +13,8 @@
 % https://www.overleaf.com/learn/latex/Mathematical_expressions
 % https://en.wikibooks.org/wiki/LaTeX/Mathematics
 \usepackage{amsmath,amsfonts,amssymb,mathtools}
+\usepackage{bm}
+\usepackage{siunitx}
 
 % Images
 % https://www.overleaf.com/learn/latex/Inserting_Images
@@ -44,55 +46,82 @@
 
 % Title content
 \title{ENPM 673 Homework 1}
-\author{Arjun Srinivasan Ambalam,Praveen Menaka Sekar,Arun Kumar Dhandayuthabani}
-\newline
-\date{February 11, 2020}
-
+\author{Arjun Srinivasan Ambalam, Praveen Menaka Sekar, Arun Kumar Dhandayuthabani}
 \begin{document}
 
 \maketitle
 
-
-
-
 % Introduction and Overview
 \section{Problem 1}
-
-
+Assume that you have a camera with a resolution of 5MP where the camera sensor is square shaped with a width of 14mm. It is also given that the focal length of the camera is 15mm.
+\begin{itemize}
+\item Compute the Field of View of the camera in the horizontal and vertical direction. [10 POINTS]
+\item Assuming you are detecting a square shaped object with width 5cm, placed at a distance of 20 meters from the camera, compute the minimum number of pixels that the object will occupy in the image. [10 POINTS]
+\end{itemize}
 % Example Subsection
-\subsection{Since camera sensor is square shaped and also a single focal length is given,the Field of View (FOV) in Horizontal and Vertical directions are same}
-\begin{equation*}
-FOV =2*\phi , \linebreak
-\linebreak
-\phi=\tan ^{-1} \frac{d}{2f}
-\end{equation*}
- where d is camera sensor width (d=14 mm)
-        , f is focal length (f=15 mm)
-\begin{equation*}     
-   \phi =\tan ^{ - 1}\frac{14}{2*15}\end{equation*}
-                    
-                   \hspace{6.5cm} \phi =  25.0168.
-                  \newline
-                  \hspace{6.5 cm} FOV = 2*25.0168 = 50.036 \end
-
+\subsection{Field of View Calculation}
+Since camera sensor is square shaped and also a single focal length is given,the Field of View (FOV) in Horizontal and Vertical directions are same.
+%\boldmath
+\begin{equation}
+\boxed{FOV =\ 2*\phi} \\
+\end{equation}
+\begin{equation}
+\boxed{\phi = \ \tan ^{-1} \frac{d}{2f}}
+\end{equation}
+\begin{align*}
+\phi =& \ \tan ^{ - 1}\frac{14}{2*15} \\
+\phi =& \ \ang{25.0168}\\
+FOV =& \ 2*25.0168 \\ =& \ \ang{50.036}
+\end{align*}
+%\unboldmath
+where 
+\begin{itemize}
+\item d is camera sensor width (d=14 mm)
+\item f is focal length (f=15 mm)
+\end{itemize}
+Therefore the Field of View of the camera (FOV) in horizontal and vertical direction is \boxed{\ang{50.036}}
 
 % Example Subsubsection
 \subsection{Minimum number of pixels occupying image}
-Square shaped object with width 5cm (w) = 50 mm,
-Distance of from the camera (D) = 20 m = 20000 mm.
-Let size of the object image on camera sensor be 'x' mm
-\begin{equation*}
- \frac{x}{2f}=\frac{w}{2D}
- \end{equation*}
-\begin{flushleft}
-After substitution and solving we get x=0.0375 mm,\\
-5 MP resolution for sensor area 14\times14\hspace{.1cm}mm ^2 \\
-Therefore for sensor area \hspace{.1cm}0.0375*0.0375, Minimum number of corresponding pixels are 35.87
-  
-\end{flushleft}
+Given:
+\begin{itemize}
+    \item Width of square shaped object (w) = 50 mm (5 cm)
+    \item Distance of square shaped object from the camera (D) = 20000 mm (20 m)
+\end{itemize}
+Let the size of object in the image be 'x' mm. Then, 
+\begin{equation}
+\boxed{\frac{x}{2f}=\frac{w}{2D}}
+\end{equation}
+After substitution and solving we get,
+\begin{equation}
+\boxed{x = 0.0375 \ mm}
+\end{equation}
+\begin{equation}
+5 \ MP \ resolution \ for \ sensor area = 14\times14\hspace{.1cm}mm ^2 \\
+\end{equation}
+\begin{equation}
+For \ sensor \ area \ 0.0375\times0.0375\hspace{.1cm}mm ^2 = 35.87 pixels \\
+\end{equation}
+Therefor minimum number of pixels occupying image is \boxed{36}
 
-\section{Curve Fitting Methods}
-We have discussed about Least Squares ,Total Least Squares and Least Squares with Regularization.From the results we see that             method is best fit for the problem in hand. 
+\section{Problem 2}
+Two files of 2D data points are provided in the form of CSV files (Dataset1 and Dataset2). The data represents measurements of a projectile with different noise levels. Assuming that the projectile follows the equation of a parabola,
+\begin{itemize}
+    \item Find the best method to fit a curve to the given data for each case. You have to plot the data and your best fit curve for each case. Submit your code along with the instructions to run it. [40 POINTS]
+    \item Briefly explain all the steps of your solution and discuss why your choice of outlier rejection technique is best for that case. [20 POINTS]
+\end{itemize}
+\subsection{Curve Fitting}
+The problem of curve fitting is, given N discrete points in space, to find model parameters that can best characterize or generalize the trends prevailing between them. For this assignment, we are given with a set of 2D data points representing a projectile with different noise levels. In order to obtain the best model that can fit the given data points, We have discussed about Least Squares, Total Least Squares, Least Squares with Regularization and RANSAC (Random Sample Consensus) methodologies. Based on the results obtained from the above methods, the best fit for the problem is decided.
+\subsection{Least Squares}
+\subsubsection{Algorithm}
+\subsection{Total Least Squares}
+\subsubsection{Algorithm}
+\subsection{Least Squares with Regularization}
+\subsubsection{Algorithm}
+\subsection{RANSAC}
+\subsubsection{Algorithm}
+
+
 
 \section{Homography in Computer Vision}
 
@@ -185,16 +214,15 @@ V=\begin{bmatrix}
 \sum_= \begin{bmatrix}
  \vspace{5mm} %5mm vertial space
 
-      60215 &         0    &     0  &       0   &      0    &     0   &      0     &    0     &    0\\
-         0  &     31825     &   0   &      0    &     0     &    0    &     0   &      0      &   0\\
-         0   &      0       & 261   &      0    &     0     &    0  &       0    &     0      &   0\\
-         0   &      0       &  0    &    186    &     0     &    0     &    0    &     0      &   0\\
-         0   &      0       &  0    &     0     &   146     &    0      &   0    &     0      &   0\\
-         0   &      0       &  0    &     0     &    0      &   61      &   0    &     0      &   0\\
-         0   &      0       &  0    &     0     &    0      &   0       &   4    &     0      &   0\\
-         0   &      0       &  0    &     0     &    0      &   0       &  0     &     1      &   0\\
+      60214.89 &         0    &     0  &       0   &      0    &     0   &      0     &    0     &    0&    0\\
+         0  &     31824.52     &   0   &      0    &     0     &    0    &     0   &      0      &   0&    0\\
+         0   &      0       & 260.89   &      0    &     0     &    0  &       0    &     0      &   0&    0\\
+         0   &      0       &  0    &    186.22    &     0     &    0     &    0    &     0      &   0&    0\\
+         0   &      0       &  0    &     0     &   145.60     &    0      &   0    &     0      &   0&    0\\
+         0   &      0       &  0    &     0     &    0      &   60.87      &   0    &     0      &   0&    0\\
+         0   &      0       &  0    &     0     &    0      &   0       &   3.87    &     0      &   0&    0\\
+         0   &      0       &  0    &     0     &    0      &   0       &  0     &     1      &   0 &   0\\0   &      0       &  0    &     0     &    0      &   0       &  0&   0       &  0 &  0\\
 \end{bmatrix}
-
 
 
 \end{flushleft}
