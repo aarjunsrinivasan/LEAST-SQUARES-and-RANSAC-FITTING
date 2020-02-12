@@ -150,21 +150,93 @@ In order to minimize the above error,
 \end{equation}
 On solving the above equation we obtain the following optimized model parameters,
 \begin{equation}
-\boxed{B = (X^TX)^-1(X^TY)}
+\boxed{B = (X^TX)\textsuperscript{-1}(X^TY)}
 \end{equation}
-\begin{algorithm}[H]
+\begin{algorithm}
 \SetAlgoLined
 \KwResult{Y\textsubscript{estimate}}
  Load 2D data points\;
  Evaluate Y and X matrices\;
- Evaluate B matrix from $B = (X^TX)^-1(X^TY)$\;
+ Evaluate B matrix from $B = (X^TX)\textsuperscript{-1}(X^TY)$\;
  Evaluate and Return Y\textsubscript{estimate}\;
  Scatterplot original 2D data points and Plot the curve that fit the 2D
- data points\;
+ data points
 \caption{LeastSquaresCurveFitting.py}
 \end{algorithm}
-Random Sample And Consensus (RANSAC):
-RANSAC is an iterative algorithm that estimates the best possible solution of a certain model using the given set of data points that is contaminated by large number of outliers. 
+\newline \newline \textbf{Least Squares with Regularization:}
+\newline Given the 2D projectile data \{(X\textsubscript{1}, Y\textsubscript{1}), (X\textsubscript{2}, Y\textsubscript{2}), ......., ( X\textsubscript{N}, Y\textsubscript{N})\}, we try to fit a quadratic equation $y = a{x^2} + bx + c$ by reducing the sum of squared errors associated with the estimated model parameters and ground truth with an addition constraint called regularization parameter. This concept is mathematically represented by,
+\begin{equation}
+\boxed{E(a, b, c) = \sum_{n = 1}^{N} (y - (a{x^2} + bx + c))}
+\end{equation}
+where,
+\begin{itemize}
+    \item E(a, b, c) - sum of squared errors between the ground truth y and the estimate y obtained from our model parameters. 
+\end{itemize}
+In order to find best fit for the above data we try to minimize the above error with respect to the model parameters. This can be easily represented using matrices.
+\begin{equation}
+\boxed{Y = XB}
+\end{equation}
+where, 
+\begin{equation}
+\boxed{Y = 
+\begin{bmatrix}
+y_1 \\ y_2 \\ . \\ . \\ . \\ y_N
+\end{bmatrix}
+X = 
+\begin{bmatrix}
+x^2_1 & x_1 & 1 \\ x^2_2 & x_2 & 1 \\ . & . & . \\ . & . & . \\
+x^2_N & x_N & 1 
+\end{bmatrix}
+B = 
+\begin{bmatrix}
+a \\ b \\ c
+\end{bmatrix}}
+\end{equation}
+\begin{equation}
+\boxed{E(a, b, c) = (Y - XB)^2}
+\end{equation}
+In order to minimize the above error,
+\begin{equation}
+\boxed{\frac{\partial E(a, b, c)}{\partial B} = 0}
+\end{equation}
+On solving the above equation we obtain the following optimized model parameters,
+\begin{equation}
+\boxed{B = (X^TX)\textsuperscript{-1}(X^TY)}
+\end{equation}
+\newline \textbf{Random Sample And Consensus (RANSAC)}:
+\newline
+RANSAC is an iterative algorithm that estimates the best possible solution of a certain model using the given set of data points that is contaminated by large number of outliers. RANSAC basically comprises of two steps:
+\begin{itemize}
+    \item Minimal Sample Sets were randomly selected from the input dataset (for a quadratic curve minimum number of points required and the model parameters are computed using only those elements; in order to compute model parameters we can use least squares or total least squares or any other optimization methodologies.
+    \item We then evaluate the model estimated by checking it with rest of the dataset and classify the dataset into inliers and outliers based on a defined threshold.
+\end{itemize}
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwResult{Best Model Parameters}
+ Obtain minimum number of samples, minimum number of inlier points, threshold, iterations\;
+ Initialize best model = None, best inliers = 0, best error = infinity, i = 0\;
+ \While{i $\leq$ iterations}{
+  Choose 3 random points from the dataset\;
+  Also obtain the remaining points from the dataset\;
+  Fit a curve for the 3 random points using least squares method\;
+  Estimate the y values for the remaining points\;
+  Find the error per point\;
+  Compute the number of inliers by comparing the error per point with threshold\;
+  \If{number of inliers $\geq$ minimum number of inlier points}{
+   Total number of inliers = number of inliers + minimum number of samples\;
+   Fit a curve again for the set containing Total number of inliers\;
+   Estimate the y values for the remaining points\;
+   Find the error per point and calculate the mean of the error\;
+   \If{current error $\leq$ best error}{
+   best model = current model\;
+   best error = current error\;
+   best inliers = total inliers\;
+   }
+      }
+      i = i + 1\;
+ }
+ \caption{Random Sample And Consensus (RANSAC)}
+\end{algorithm}
 \section{Homography in Computer Vision}
 
 \begin{flushleft}
