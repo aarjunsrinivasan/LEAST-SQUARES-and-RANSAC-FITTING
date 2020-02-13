@@ -1,6 +1,4 @@
-# sarjun_hw1
-
-ENPM 673-HW1
+# ENPM 673-HW1
 
 Procedure to run the Codes:
 Run the python files in the current directory which contains all the codes.
