@@ -8,3 +8,5 @@ and RANSAC_LS.py discusses RANSAC function for the given datasets
 
 For Problem 3,Run SVD.py file
   
+In order to get more information visit the below GitHub link:
+https://github.com/aarjunsrinivasan/sarjun_hw1
