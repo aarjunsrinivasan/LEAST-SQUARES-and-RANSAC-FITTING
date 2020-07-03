@@ -1,9 +1,5 @@
 # ENPM 673-HW1
 
-## Procedure to run the Codes:
-Run the python files in the current directory which contains all the codes.
-
-
 ## Authors
 
 - [Arjun Srinivasan](https://github.com/aarjunsrinivasan)
@@ -16,7 +12,9 @@ Run the python files in the current directory which contains all the codes.
 - Matplotlib
 - Numpy
 
-Run 
+## Procedure to run the Codes:
+Run the python files in the current directory which contains all the codes.
+ 
 ```
 python3 LeastSquareCurveFitting.py 
 ```
