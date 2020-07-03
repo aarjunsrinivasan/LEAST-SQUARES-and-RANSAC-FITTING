@@ -19,7 +19,7 @@ For Singular Value Decomposition,Run
 python SVD.py 
 ```
 <p align="center">
-  <p align="center"><img src="/lsfit.png"></p>
+  <p align="center"><img src="/lsfit.PNG"></p>
   <br><b>Figure 1 - Least Squares Curve tting using Regularization for Dataset 1 and Dataset 2</b><br>
 </p>
   
