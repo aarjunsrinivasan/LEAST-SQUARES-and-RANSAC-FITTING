@@ -13,7 +13,7 @@
 - Numpy
 
 ## Procedure to run the Codes:
-Run the python files in the current directory which contains all the codes.
+Run the python files from the code folder which contains all the codes.
  
 ```
 python3 LeastSquareCurveFitting.py 
