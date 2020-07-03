@@ -3,6 +3,19 @@
 ## Procedure to run the Codes:
 Run the python files in the current directory which contains all the codes.
 
+
+## Authors
+
+- [Arjun Srinivasan](https://github.com/aarjunsrinivasan)
+- [Arun Kumar](https://github.com/akdhandy)
+- [Praveen](https://github.com/Praveen1098)
+
+
+## Dependencies
+- python3
+- Matplotlib
+- Numpy
+
 Run 
 ```
 python3 LeastSquareCurveFitting.py 
